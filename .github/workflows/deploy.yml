@@ -4,9 +4,14 @@ on:
     branches:
       - main
       - dev
+env:
+  MONGO_DB_NAME: db-name
 jobs:
   test:
     environment: testing
+    env: 
+      MONGO_DB_USER: db-user
+      MONGO_DB_PASSWORD: db-password
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -18,10 +23,11 @@ jobs:
           key: npm-deps-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
-      - name: Run server
-        run: npm start & npx wait-on http://127.0.0.1:XYZ
-      - name: Run tests
-        run: npm test
+      - name: Print Env
+        run: |
+          echo ${{ env.MONGO_DB_NAME }}
+          echo $MONGO_DB_USER
+          echo $MONGO_DB_PASSWORD
       - name: Output information
         run: echo "..."
   deploy:
