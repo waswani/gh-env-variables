@@ -6,6 +6,7 @@ on:
       - dev
 env:
   MONGO_DB_NAME: db-name
+  DB_REPO_LEVEL_SECRET: ${{ secrets.DB_REPO_LEVEL_SECRET }}
 jobs:
   test:
     environment: testing
@@ -36,4 +37,5 @@ jobs:
     steps:
       - name: Output information
         run: |        
-          echo "..."
+          echo ${{ env.DB_REPO_LEVEL_SECRET }}
+          echo $DB_REPO_LEVEL_SECRET
