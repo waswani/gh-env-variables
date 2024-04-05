@@ -29,6 +29,7 @@ jobs:
           echo ${{ env.MONGO_DB_NAME }}
           echo $MONGO_DB_USER
           echo $MONGO_DB_PASSWORD
+          echo $ENV_SPECIFIC_SECRET
       - name: Output information
         run: env
   deploy:
@@ -39,3 +40,4 @@ jobs:
         run: |        
           echo ${{ env.DB_REPO_LEVEL_SECRET }}
           echo $DB_REPO_LEVEL_SECRET
+          echo $ENV_SPECIFIC_SECRET
